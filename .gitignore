@@ -3,6 +3,7 @@ node_modules/
 coverage/
 dist/
 build/
+Documentacao/
 *.log
 npm-debug.log*
 data/*.db
@@ -52,4 +53,3 @@ temp/
 # docs/slides/ - NOW TRACKED for workshop presentations
 !docs/slides/*.pptx
 *.pptx
-Documentacao/

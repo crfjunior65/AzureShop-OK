@@ -1,3 +1,0 @@
-date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
-15:10:20	4262/4262	---MCZ	200	added ('OK')	text/html	date:Sat,%2019%20Sep%202026%2018:10:20%20GMT	https://imersao-material-ed5.highexpert.com.br/lab/maquina-virtual	./Site4/imersao-material-ed5.highexpert.com.br/lab/maquina-virtual.html	(from )
-15:10:21	91/91	---MCZ	200	added ('OK')	text/plain	date:Sat,%2019%20Sep%202026%2018:10:21%20GMT	https://imersao-material-ed5.highexpert.com.br/robots.txt		(from )

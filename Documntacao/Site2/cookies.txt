@@ -1,5 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-imersao-material-ed5.highexpert.com.br	TRUE	/	FALSE	1999999999	__cf_bm	Le1_Xlh95aNAW59vs2TttUZjfrjGpFd4CpvXdixkaiY-1789837919.238669-1.0.1.1-D1ekHLoun6ZXy47.o4c_vNRSYhPhuZDBTqnBy.jPf0BVPykvpXIONSV0f6xkNORTV_xOFilu3vvkwlaOS0VUWFS3_H4c7.OXHACJd5nTRBoHRaP_9voj6z90EaWENbeJ
-imersao-material-ed5.highexpert.com.br	TRUE	/	FALSE	1999999999	SameSite	None
-
