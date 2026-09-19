@@ -1,0 +1,55 @@
+# Dependencies, generated files, and local application data
+node_modules/
+coverage/
+dist/
+build/
+*.log
+npm-debug.log*
+data/*.db
+data/*.db-*
+
+# Local environment configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*sql_pwd*
+*password*
+*secret*
+*token*
+
+# Terraform local configuration, state, and provider cache
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+*.tfplan
+tfplan
+crash.log
+crash.*.log
+.terraformrc
+terraform.rc
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Kubernetes secrets must remain local; examples are safe to publish
+infra/k8s/secret.yaml
+!infra/k8s/secret.example.yaml
+!infra/k8s/secretproviderclass.yaml
+
+# Local tooling, preview, and non-workshop artifacts
+.copilot/
+qa/
+preview/
+tmp/
+temp/
+# docs/slides/ - NOW TRACKED for workshop presentations
+!docs/slides/*.pptx
+*.pptx
+Documentacao/

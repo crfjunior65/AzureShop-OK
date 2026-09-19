@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Loja didática da Imersão Arquiteto Azure — Cloud & AI">
+  <title>Azure Shop | Cloud & AI</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="#">Azure<span>Shop</span></a>
+  <nav class="main-nav" aria-label="Navegação principal"><a href="/#products">Produtos</a><a href="/orders">Meus pedidos</a></nav>
+  <div class="header-actions"><div class="workshop">Imersão Arquiteto Azure — Cloud & AI</div><button id="cart-button" class="cart-button" aria-label="Abrir carrinho">Carrinho <strong id="cart-count">0</strong></button></div>
+  </header>
+<main id="store-content">
+    <section class="hero">
+      <div><p class="eyebrow">Arquitetura que evolui com você</p><h1>Da VM à AI.<br><span>Uma aplicação, toda a jornada.</span></h1><p>Um e-commerce realista e simples, criado para aprender modernização na Azure.</p><a href="#products" class="primary">Explorar produtos</a></div>
+      <div class="cloud-card"><div>☁️</div><strong>Cloud Native</strong><small>Frontend · API · Banco</small></div>
+    </section>
+    <section id="ai-consultant" class="ai-section">
+      <div class="ai-box">
+        <p class="eyebrow">Powered by Azure OpenAI</p>
+        <h2>🤖 Consultor IA da loja</h2>
+        <p class="ai-lead">Conte o que você procura e a IA recomenda os produtos ideais do nosso catálogo.</p>
+        <form id="ai-form" class="ai-form">
+          <input id="ai-interest" name="interest" placeholder="Ex.: quero organizar meus estudos de arquitetura Azure" autocomplete="off">
+          <button class="primary" type="submit" id="ai-submit">Pedir recomendação</button>
+        </form>
+        <div id="ai-result" class="ai-result" role="status"></div>
+      </div>
+    </section>
+    <section id="products" class="catalog"><div class="section-title"><div><p class="eyebrow">Catálogo</p><h2>Produtos da Imersão</h2></div><span id="status">Conectando à API…</span></div><div id="product-grid" class="grid"></div></section>
+  </main>
+  <aside id="cart" class="drawer" aria-hidden="true">
+    <div class="drawer-head"><h2>Seu Carrinho</h2><button id="close-cart" aria-label="Fechar">×</button></div>
+    <div id="cart-items" class="cart-items"></div>
+    <section class="order-summary" aria-labelledby="summary-title">
+      <h3 id="summary-title">Resumo do pedido</h3>
+      <div class="summary-row"><span>Produtos</span><strong id="summary-subtotal">R$ 0,00</strong></div>
+      <form id="coupon-form" class="coupon-form">
+        <label for="coupon-code">Cupom de desconto</label>
+        <div><input id="coupon-code" name="couponCode" placeholder="Digite seu cupom" autocomplete="off"><button type="submit">Aplicar</button></div>
+      </form>
+      <p id="coupon-message" class="checkout-feedback" role="status"></p>
+      <div id="applied-coupon" class="applied-coupon" hidden><span id="applied-coupon-code"></span><button type="button" id="remove-coupon">Remover cupom</button></div>
+      <div id="discount-row" class="summary-row discount-row" hidden><span id="discount-label">Desconto</span><strong id="discount-value">- R$ 0,00</strong></div>
+      <div class="shipping-section">
+        <label for="postal-code">CEP</label>
+        <div class="cep-input"><input id="postal-code" name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000"></div>
+        <p id="cep-message" class="checkout-feedback" role="status"></p>
+        <div class="summary-row shipping-row"><span id="shipping-label">Frete</span><strong id="shipping-value">Calcular</strong></div>
+        <button type="button" id="change-cep" class="text-button" hidden>Alterar CEP</button>
+      </div>
+      <div class="total"><span>Total</span><strong id="cart-total">R$ 0,00</strong></div>
+    </section>
+    <form id="checkout-form"><label>Nome<input name="customerName" required autocomplete="name"></label><label>E-mail<input name="customerEmail" type="email" required autocomplete="email"></label><label>Forma de pagamento<select name="paymentMethod"><option value="pix">PIX</option><option value="credit_card">Cartão de crédito</option><option value="boleto">Boleto</option></select></label><button class="primary" type="submit">Finalizar pedido</button></form>
+    <p id="checkout-message" role="status"></p>
+  </aside>
+  <div id="overlay" class="overlay"></div>
+  <main id="orders-page" hidden>
+    <section class="orders-shell">
+      <div id="orders-list-view">
+        <p class="eyebrow">Histórico de compras</p>
+        <h1>Meus pedidos</h1>
+        <p class="orders-intro">Acompanhe seus pedidos, pagamentos e informações de faturamento.</p>
+        <div class="order-filters">
+          <label for="order-search">Buscar pedido<input id="order-search" type="search" placeholder="AZS-20260820-001"></label>
+          <label for="order-status-filter">Status<select id="order-status-filter"><option value="">Todos</option><option value="pending">Pendentes</option><option value="paid">Pagos</option><option value="processing">Processando</option><option value="shipped">Enviados</option><option value="delivered">Entregues</option><option value="cancelled">Cancelados</option></select></label>
+        </div>
+        <div id="orders-content" aria-live="polite"></div>
+      </div>
+      <section id="order-detail-view" hidden aria-live="polite"></section>
+    </section>
+  </main>
+  <footer><strong>AzureShop</strong><span>Aplicação didática · Imersão Arquiteto Azure — Cloud & AI</span><a href="/api/health">Saúde da API</a></footer>
+  <script src="/checkout-utils.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: azure-shop
+  namespace: azure-shop
+  labels:
+    app: azure-shop
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels: { app: azure-shop }
+  template:
+    metadata:
+      labels: { app: azure-shop }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: azure-shop
+          image: ACR_NAME.azurecr.io/azure-shop:IMAGE_TAG
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: azure-shop-config
+          env:
+            - name: AZURE_SQL_SERVER
+              valueFrom: { secretKeyRef: { name: azure-shop-secrets, key: sql-server, optional: true } }
+            - name: AZURE_SQL_DATABASE
+              valueFrom: { secretKeyRef: { name: azure-shop-secrets, key: sql-database, optional: true } }
+            - name: AZURE_SQL_USER
+              valueFrom: { secretKeyRef: { name: azure-shop-secrets, key: sql-user, optional: true } }
+            - name: AZURE_SQL_PASSWORD
+              valueFrom: { secretKeyRef: { name: azure-shop-secrets, key: sql-password, optional: true } }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet: { path: /api/health, port: 3000 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /api/health, port: 3000 }
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          resources:
+            requests: { cpu: 50m, memory: 96Mi }
+            limits: { cpu: 250m, memory: 256Mi }
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+            - name: tmp
+              mountPath: /tmp
+          # Monte o Key Vault via CSI descomentando abaixo (etapa de seguranca).
+          # volumeMounts:
+          #   - name: kv-secrets
+          #     mountPath: /mnt/secrets-store
+          #     readOnly: true
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+      #   - name: kv-secrets
+      #     csi:
+      #       driver: secrets-store.csi.k8s.io
+      #       readOnly: true
+      #       volumeAttributes:
+      #         secretProviderClass: azure-shop-kv

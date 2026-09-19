@@ -1,0 +1,31 @@
+# Modelo A: Dia 1 no Portal; Dia 2 cria somente ACR, AKS e conectividade nova.
+# Copie para terraform.tfvars local. NUNCA versione este arquivo, plans ou state.
+# Senhas de VM e SQL pertencem apenas ao Portal ou a uma sessao segura do Cloud Shell.
+
+resource_group_name = "rg-imersao-arquitetoazure"
+suffix              = "azureshop#"
+
+# Identificadores nao secretos coletados no Portal ao concluir o Dia 1.
+portal_vnet_name                 = "vnet-imersao"
+portal_data_nsg_name             = "nsg-snet-aplicacao"
+portal_data_subnet_name          = "snet-dados"
+portal_sql_server_name           = "[definir: servidor SQL do Dia 1 ]" # SEM o sufixo .database.windows.net
+portal_sql_database_name         = "imersao"
+portal_sql_private_dns_zone_name = "privatelink.database.windows.net"
+
+# Fase 1: habilite somente apos os data sources acima serem resolvidos.
+deploy_acr = true
+deploy_aks = false
+acr_sku    = "Basic"
+
+# Confirme SKU e quota no Portal antes de mudar estes valores.
+aks_node_count = 1
+aks_node_size  = "Standard_B4ms"  # SKUs suportados: Standard_B4ms, Standard_D2s_v5, Standard_D4s_v5
+
+# Fase 2: mantenha false ate AKS terminar. Depois colete os valores reais da
+# VNet gerenciada e do RG MC_... pelo Cloud Shell e habilite a conectividade.
+enable_aks_private_connectivity = false
+aks_node_resource_group         = "[definir: aks_node_resource_group]"
+aks_vnet_name                   = "[definir: vnet-name-aks_node_resource_group"]
+aks_vnet_address_prefixes       = ["definir: vnet-addressspace-aks_node_resource_group"]
+aks_sql_nsg_priority            = 1004

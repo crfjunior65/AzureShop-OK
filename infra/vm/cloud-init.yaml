@@ -1,0 +1,39 @@
+#cloud-config
+# Inicializacao da VM Linux para a Imersao Arquiteto Azure — Cloud & AI.
+# Nao inclui credenciais. Logs ficam disponiveis via journalctl -u azure-shop.
+package_update: true
+packages:
+  - git
+  - curl
+
+write_files:
+  - path: /etc/systemd/system/azure-shop.service
+    permissions: "0644"
+    content: |
+      [Unit]
+      Description=Imersao Arquiteto Azure - Cloud & AI
+      After=network.target
+
+      [Service]
+      Type=simple
+      User=azureuser
+      WorkingDirectory=/opt/azure-shop
+      Environment=PORT=3000
+      Environment=APP_ENV=azure
+      Environment=DB_PROVIDER=sqlite
+      Environment=SQLITE_PATH=/opt/azure-shop/data/loja.db
+      ExecStart=/usr/bin/node src/server.js
+      Restart=on-failure
+
+      [Install]
+      WantedBy=multi-user.target
+
+runcmd:
+  - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+  - apt-get install -y nodejs
+  - mkdir -p /opt/azure-shop/data
+  - chown -R azureuser:azureuser /opt/azure-shop
+  # A aplicacao deve ser copiada/clonada para /opt/azure-shop antes de iniciar o servico.
+  # Ex.: git clone <repo> /opt/azure-shop && (cd /opt/azure-shop && npm ci --omit=dev)
+  - systemctl daemon-reload
+  - systemctl enable azure-shop.service

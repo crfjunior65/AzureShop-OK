@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: azure-shop
+  labels:
+    app.kubernetes.io/part-of: imersao-arquiteto-azure

@@ -1,0 +1,20 @@
+{
+  "name": "imersao-arquiteto-azure-cloud-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "E-commerce didático para a Imersão Arquiteto Azure — Cloud & AI",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "mssql": "^11.0.1"
+  }
+}
