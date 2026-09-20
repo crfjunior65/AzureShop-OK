@@ -15,3 +15,5 @@ override.tf.json
 terraform.rc
 tfplan
 *.tfplan
+Key*
+Key-Azure*.*

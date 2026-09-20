@@ -1,0 +1,53 @@
+{
+  "auxiliaryMode": "None",
+  "auxiliarySku": "None",
+  "disableTcpStateTracking": false,
+  "dnsSettings": {
+    "appliedDnsServers": [],
+    "dnsServers": []
+  },
+  "enableAcceleratedNetworking": true,
+  "enableIPForwarding": false,
+  "etag": "W/\"e76b58c4-8f3c-4c81-bd6a-413312653ff9\"",
+  "hostedWorkloads": [],
+  "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/networkInterfaces/vm-imersao34",
+  "ipConfigurations": [
+    {
+      "etag": "W/\"e76b58c4-8f3c-4c81-bd6a-413312653ff9\"",
+      "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/networkInterfaces/vm-imersao34/ipConfigurations/ipconfig1",
+      "name": "ipconfig1",
+      "primary": true,
+      "privateIPAddress": "10.0.1.4",
+      "privateIPAddressVersion": "IPv4",
+      "privateIPAllocationMethod": "Static",
+      "provisioningState": "Succeeded",
+      "publicIPAddress": {
+        "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/publicIPAddresses/pip-vnet-imerssao-us-eastus-snet-aplicacao",
+        "resourceGroup": "rg-imersao-arquitetoazure-us"
+      },
+      "resourceGroup": "rg-imersao-arquitetoazure-us",
+      "subnet": {
+        "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/snet-aplicacao",
+        "resourceGroup": "rg-imersao-arquitetoazure-us"
+      },
+      "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+    }
+  ],
+  "location": "eastus",
+  "macAddress": "70-A8-A5-8C-28-38",
+  "name": "vm-imersao34",
+  "networkSecurityGroup": {
+    "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-aplicacao-us",
+    "resourceGroup": "rg-imersao-arquitetoazure-us"
+  },
+  "nicType": "Standard",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "rg-imersao-arquitetoazure-us",
+  "resourceGuid": "f54b97eb-db93-436a-8eee-260a81ddf25d",
+  "tags": {
+    "Project": "ImersaoAzure"
+  },
+  "tapConfigurations": [],
+  "type": "Microsoft.Network/networkInterfaces",
+  "vnetEncryptionSupported": false
+}

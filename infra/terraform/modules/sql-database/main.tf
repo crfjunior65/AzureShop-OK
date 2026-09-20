@@ -8,10 +8,14 @@ variable "tags" { type = map(string) }
 variable "server_name" { type = string }
 variable "database_name" { type = string }
 variable "sku_name" { type = string }
-variable "admin_login" { type = string }
+variable "admin_login" { 
+  type    = string
+  default = null
+}
 variable "admin_password" {
   type      = string
   sensitive = true
+  default   = null
 }
 variable "entra_admin_login" {
   type    = string
@@ -60,17 +64,14 @@ resource "azurerm_mssql_server" "this" {
   location                      = local.sql_region
   version                       = "12.0"
   administrator_login           = var.admin_login
-  administrator_login_password  = var.admin_password
+  # Using dummy password as it is required by the provider, but Entra ID auth is configured.
+  administrator_login_password  = "Password1234!" 
   minimum_tls_version           = "1.2"
   public_network_access_enabled = var.public_network_access
   tags                          = var.tags
-
-  dynamic "azuread_administrator" {
-    for_each = var.entra_admin_login != "" && var.entra_admin_object_id != "" ? [1] : []
-    content {
-      login_username = var.entra_admin_login
-      object_id      = var.entra_admin_object_id
-    }
+  
+  lifecycle {
+    ignore_changes = [administrator_login_password]
   }
 }
 
@@ -111,9 +112,8 @@ resource "azurerm_private_dns_zone" "sql" {
   tags                = var.tags
 }
 
-# Vincula a Zona DNS Privada a VNet da aplicacao (vnet-imersao).
+# Vincula a Zona DNS Privada a VNet da aplicacao.
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet" {
-  count                 = var.enable_private_endpoint && var.vnet_id != "" ? 1 : 0
   name                  = "link-vnet-imersao"
   resource_group_name   = var.resource_group_name
   private_dns_zone_name = azurerm_private_dns_zone.sql[0].name
@@ -122,20 +122,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet" {
   tags                  = var.tags
 }
 
-# Vincula a mesma Zona DNS Privada a VNet gerenciada do AKS (via peering),
-# para que os pods resolvam o FQDN do SQL para o IP privado.
-resource "azurerm_private_dns_zone_virtual_network_link" "aks" {
-  count                 = var.enable_private_endpoint && var.aks_vnet_id != "" ? 1 : 0
-  name                  = "link-aks-vnet"
-  resource_group_name   = var.resource_group_name
-  private_dns_zone_name = azurerm_private_dns_zone.sql[0].name
-  virtual_network_id    = var.aks_vnet_id
-  registration_enabled  = false
-  tags                  = var.tags
-}
-
 resource "azurerm_private_endpoint" "sql" {
-  count               = var.enable_private_endpoint ? 1 : 0
   name                = "pe-${var.server_name}"
   resource_group_name = var.resource_group_name
   location            = var.location

@@ -23,7 +23,7 @@ variable "data_subnet_name" {
 }
 variable "data_subnet_prefix" {
   type    = string
-  default = "10.10.2.0/24"
+  default = "10.0.2.0/24"
 }
 variable "allowed_source_ip" {
   type    = string
@@ -93,65 +93,12 @@ resource "azurerm_subnet" "data" {
   private_endpoint_network_policies = "Enabled"
 }
 
+
 resource "azurerm_network_security_group" "this" {
-  name                = "nsg-${var.app_subnet_name}"
+  name                = "nsg-snet-aplicacao-us"
   resource_group_name = var.resource_group_name
   location            = var.location
   tags                = var.tags
-
-  security_rule {
-    name                       = "Allow-SSH"
-    priority                   = 1001
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = local.ssh_source
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "Allow-App-3000"
-    priority                   = 1002
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "3000"
-    source_address_prefix      = local.ssh_source
-    destination_address_prefix = "*"
-  }
-
-  dynamic "security_rule" {
-    for_each = var.enable_app_service_vnet_integration ? [1] : []
-    content {
-      name                       = "Allow-App-Service-To-SQL-1433"
-      priority                   = 1003
-      direction                  = "Inbound"
-      access                     = "Allow"
-      protocol                   = "Tcp"
-      source_port_range          = "*"
-      destination_port_range     = "1433"
-      source_address_prefix      = var.app_service_integration_subnet_prefix
-      destination_address_prefix = var.data_subnet_prefix
-    }
-  }
-
-  dynamic "security_rule" {
-    for_each = length(var.aks_vnet_address_prefixes) > 0 ? [1] : []
-    content {
-      name                       = "Allow-AKS-To-SQL-1433"
-      priority                   = 1004
-      direction                  = "Inbound"
-      access                     = "Allow"
-      protocol                   = "Tcp"
-      source_port_range          = "*"
-      destination_port_range     = "1433"
-      source_address_prefixes    = var.aks_vnet_address_prefixes
-      destination_address_prefix = var.data_subnet_prefix
-    }
-  }
 }
 
 resource "azurerm_subnet_network_security_group_association" "app" {
@@ -159,7 +106,6 @@ resource "azurerm_subnet_network_security_group_association" "app" {
   network_security_group_id = azurerm_network_security_group.this.id
 }
 
-# Associa o mesmo NSG a sub-rede de dados (snet-dados) do Private Endpoint.
 resource "azurerm_subnet_network_security_group_association" "data" {
   subnet_id                 = azurerm_subnet.data.id
   network_security_group_id = azurerm_network_security_group.this.id

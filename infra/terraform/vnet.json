@@ -1,0 +1,112 @@
+{
+  "addressSpace": {
+    "addressPrefixes": [
+      "10.0.0.0/16"
+    ]
+  },
+  "enableDdosProtection": false,
+  "encryption": {
+    "enabled": false,
+    "enforcement": "AllowUnencrypted"
+  },
+  "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+  "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us",
+  "location": "eastus",
+  "name": "vnet-imerssao-us",
+  "privateEndpointVNetPolicies": "Disabled",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "rg-imersao-arquitetoazure-us",
+  "resourceGuid": "f6d835b2-0c18-4ec8-97d7-49ceed0431b6",
+  "subnets": [
+    {
+      "addressPrefixes": [
+        "10.0.0.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+      "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/default",
+      "name": "default",
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "rg-imersao-arquitetoazure-us",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.3.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [
+        {
+          "actions": [
+            "Microsoft.Network/virtualNetworks/subnets/action"
+          ],
+          "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+          "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/snet-appservice-integration/delegations/Microsoft.Web/serverFarms",
+          "name": "Microsoft.Web/serverFarms",
+          "provisioningState": "Succeeded",
+          "resourceGroup": "rg-imersao-arquitetoazure-us",
+          "serviceName": "Microsoft.Web/serverFarms",
+          "type": "Microsoft.Network/virtualNetworks/subnets/delegations"
+        }
+      ],
+      "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+      "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/snet-appservice-integration",
+      "name": "snet-appservice-integration",
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "rg-imersao-arquitetoazure-us",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.1.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+      "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/snet-aplicacao",
+      "ipConfigurations": [
+        {
+          "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/RG-IMERSAO-ARQUITETOAZURE-US/providers/Microsoft.Network/networkInterfaces/VM-IMERSAO34/ipConfigurations/IPCONFIG1",
+          "resourceGroup": "RG-IMERSAO-ARQUITETOAZURE-US"
+        }
+      ],
+      "name": "snet-aplicacao",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-aplicacao-us",
+        "resourceGroup": "rg-imersao-arquitetoazure-us"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "rg-imersao-arquitetoazure-us",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    },
+    {
+      "addressPrefixes": [
+        "10.0.2.0/24"
+      ],
+      "defaultOutboundAccess": false,
+      "delegations": [],
+      "etag": "W/\"5abd23a9-186e-4cec-a2c2-3c5647bb9bda\"",
+      "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/virtualNetworks/vnet-imerssao-us/subnets/snet-dados",
+      "name": "snet-dados",
+      "networkSecurityGroup": {
+        "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/networkSecurityGroups/nsg-snet-aplicacao-us",
+        "resourceGroup": "rg-imersao-arquitetoazure-us"
+      },
+      "privateEndpointNetworkPolicies": "Disabled",
+      "privateLinkServiceNetworkPolicies": "Enabled",
+      "provisioningState": "Succeeded",
+      "resourceGroup": "rg-imersao-arquitetoazure-us",
+      "type": "Microsoft.Network/virtualNetworks/subnets"
+    }
+  ],
+  "tags": {},
+  "type": "Microsoft.Network/virtualNetworks",
+  "virtualNetworkPeerings": []
+}

@@ -1,0 +1,20 @@
+{
+  "etag": "ed527abc-31b6-4878-b7a5-75881f15c3e5",
+  "id": "/subscriptions/31f0817a-9efc-46d2-a0c2-3c9d85e77619/resourceGroups/rg-imersao-arquitetoazure-us/providers/Microsoft.Network/privateDnsZones/privatelink.database.windows.net",
+  "location": "global",
+  "maxNumberOfRecordSets": 25000,
+  "maxNumberOfVirtualNetworkLinks": 1000,
+  "maxNumberOfVirtualNetworkLinksWithRegistration": 100,
+  "name": "privatelink.database.windows.net",
+  "numberOfRecordSets": 1,
+  "numberOfVirtualNetworkLinks": 0,
+  "numberOfVirtualNetworkLinksWithRegistration": 0,
+  "provisioningState": "Succeeded",
+  "resourceGroup": "rg-imersao-arquitetoazure-us",
+  "tags": {
+    "company": "highexpert",
+    "managed": "terraform",
+    "project": "azureshop"
+  },
+  "type": "Microsoft.Network/privateDnsZones"
+}

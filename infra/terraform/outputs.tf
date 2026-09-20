@@ -1,21 +1,21 @@
 output "portal_resource_group_name" {
-  description = "RG manual do Dia 1 lido pelo Terraform; este modulo nao o cria."
-  value       = data.azurerm_resource_group.portal.name
+  description = "RG gerenciado pelo Terraform."
+  value       = azurerm_resource_group.rg.name
 }
 
 output "portal_vnet_id" {
-  description = "VNet manual do Dia 1 usada como destino do peering."
-  value       = data.azurerm_virtual_network.portal.id
+  description = "VNet gerenciada pelo Terraform."
+  value       = module.network.vnet_id
 }
 
 output "portal_sql_server_fqdn" {
-  description = "FQDN nao secreto do SQL manual do Dia 1."
-  value       = data.azurerm_mssql_server.portal.fully_qualified_domain_name
+  description = "FQDN do servidor SQL gerenciado pelo Terraform."
+  value       = module.sql.server_fqdn
 }
 
 output "portal_sql_database_name" {
-  description = "Banco SQL manual do Dia 1 confirmado pelo Terraform."
-  value       = data.azurerm_mssql_database.portal.name
+  description = "Banco SQL gerenciado pelo Terraform."
+  value       = module.sql.database_name
 }
 
 output "acr_name" {
