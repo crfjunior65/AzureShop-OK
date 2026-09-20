@@ -1,3 +1,11 @@
+<img src="https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="Azure" />
+<img src="https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white" alt="Terraform" />
+<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" alt="AKS" />
+<img src="https://img.shields.io/badge/Azure_Container_Registry-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white" alt="ACR" />
+<img src="https://img.shields.io/badge/Azure_SQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="SQL Database" />
+<img src="https://img.shields.io/badge/Network_Security_Group-0078D4?style=for-the-badge&logo=azure-networks&logoColor=white" alt="NSG" />
+<img src="https://img.shields.io/badge/Virtual_Network-0078D4?style=for-the-badge&logo=azure-networks&logoColor=white" alt="VNet" />
+
 # AzureShop — Imersão Arquiteto Azure Cloud & AI
 
 Material da aplicação AzureShop para os laboratórios da Imersão Arquiteto Azure.
